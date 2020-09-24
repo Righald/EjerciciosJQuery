@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="UTF-8">
+	<title>Clase</title>
+	<style type="text/css">
+		.super_div{
+			width: 100%;
+			height: 500px;
+			background-color: #D5D8DC;
+		}
+		.mini_div{
+			width: 30%;
+			margin: 1%;
+			border-radius: 5px;
+			border-width: 1px;
+			border-style: solid;
+			border-color: black;
+			height: 300px;
+			float: left;
+		}
+		h1{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+
+<div class="super_div">
+	<h1>Aquí no hay nada</h1>
+	<center>
+		<center>
+		<table border="1" style="width: 44%;">
+			<thead>
+				<tr>
+					<td>
+						Email
+					</td>
+					<td>
+						Password
+					</td>
+					<td>
+						Año
+					</td>
+				</tr>
+			</thead>
+			<tbody id="content_table">
+
+			</tbody>
+		</table>
+
+		<button id="mostrar_info"> actualizar tabla </button>
+	</center>
+</div>
+
+  
+<script type="text/javascript" src="jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function()
+	{
+		//Examen
+		$("#mostrar_info").click(function()
+		{
+			$.getJSON( "getUsers.php", function( data ) 
+			{
+			    $.each(data, function(i, item) {
+			        var $tr = $('#content_table').append(
+			        	$('<tr>'),
+			            $('<td>').text(item.email),
+			            $('<td>').text(item.password),
+			            $('<td>').text(item.b_year),
+			            $('</tr>')
+			        ); //.appendTo('#records_table');
+			    });
+		 	})
+		});	
+	})
+</script>
+
+</body>
+</html>
